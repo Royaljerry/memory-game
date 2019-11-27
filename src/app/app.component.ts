@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Memory Game';
-  numberOfPairs = 2;
+  numberOfGroups = 5;
 }

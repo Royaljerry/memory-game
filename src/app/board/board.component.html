@@ -1,4 +1,9 @@
 <div class="board">
   board
-  <app-card *ngFor="let card of cards"></app-card>
+  <app-card
+    *ngFor="let card of cards"
+    [cardId]=card.cardId
+    [turned]=true>
+
+  </app-card>
 </div>

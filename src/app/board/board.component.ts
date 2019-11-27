@@ -8,15 +8,18 @@ import { Card } from '../card';
 })
 export class BoardComponent implements OnInit {
 
-  @Input() numberOfPairs: number;
+  @Input() numberOfGroups: number;
   numberOfCards: number;
+  orderArray = [];
+  orderOfCards: number[];
+  groupArray = [];
+  orderOfGroups: number[];
   cards: Card[];
-  base = [];
 
   constructor() { }
 
-  generateBaseArray() {
-    this.base = new Array(this.numberOfCards).fill(0, 0, this.numberOfCards).map((x, i) => i);
+  fillArray(arrayLength) {
+    return(new Array(arrayLength).fill(0, 0, arrayLength).map((x, i) => i));
   }
 
   permutateArray(originalArray: any[]) {
@@ -30,18 +33,35 @@ export class BoardComponent implements OnInit {
     return (permutatedArray);
   }
 
-  generateBoard() {
-
+  generateCards(orderOfCards, orderOfGroups) {
+    const cards: Card[] = [];
+    for (const index in orderOfGroups) {
+      const card1 = new Card(orderOfCards[2 * index], orderOfGroups[index], false);
+      const card2 = new Card(orderOfCards[(2 * index) + 1], orderOfGroups[index], false);
+      cards.push(card1);
+      cards.push(card2);
+    }
+    return cards;
   }
+
+  // generateBoard() {
+  //
+  // }
 
   // generatePair() {
   //
   // }
 
   ngOnInit() {
-    this.numberOfCards = 2 * this.numberOfPairs;
-    this.generateBaseArray();
-    // this.cards = ;
-    console.log(this.permutateArray(['a', 'b', 'c']));
+    this.numberOfCards = 2 * this.numberOfGroups;
+
+    this.orderArray = this.fillArray(this.numberOfCards);
+    this.orderOfCards = this.permutateArray(this.orderArray);
+    this.groupArray = this.fillArray(this.numberOfGroups);
+    this.orderOfGroups = this.permutateArray(this.groupArray);
+
+    this.cards = this.generateCards(this.orderOfCards, this.orderOfGroups);
+
+    console.log(this.cards);
   }
 }
