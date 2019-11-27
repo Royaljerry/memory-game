@@ -3,7 +3,8 @@
   <app-card
     *ngFor="let card of cards"
     [cardId]=card.cardId
-    [turned]=true>
+    [groupId]=card.groupId
+    [turned]=card.turned>
 
   </app-card>
 </div>

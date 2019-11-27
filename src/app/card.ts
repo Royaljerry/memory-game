@@ -1,7 +1,7 @@
 export class Card {
-  private cardId: number;
-  private groupId: number;
-  private turned: boolean;
+  cardId: number;
+  groupId: number;
+  turned: boolean;
 
   constructor(
     cardId: number,
