@@ -45,9 +45,21 @@ export class BoardComponent implements OnInit {
     return cards;
   }
 
+  resetCards() {
+    for (const card of this.cards) {
+      card.turned = false; // why the fck it does not work?
+    }
+    console.log('Cards reset');
+    // console.log(this.cards);
+  }
+
   turnCardHandler(turn: boolean) {
     this.turnedCards += turn ? 1 : -1;
+    if (this.turnedCards === 3) {
+      this.resetCards();
+    }
     console.log(this.turnedCards);
+    console.log(this.cards);
   }
 
   ngOnInit() {
