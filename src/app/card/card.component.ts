@@ -13,6 +13,10 @@ export class CardComponent implements OnInit {
 
   constructor() { }
 
+  swapCard() {
+    this.turned = !this.turned;
+  }
+
   ngOnInit() { }
 
 }
