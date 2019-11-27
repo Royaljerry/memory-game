@@ -4,6 +4,8 @@
     *ngFor="let card of cards"
     [cardId]=card.cardId
     [groupId]=card.groupId
-    [turned]=card.turned>
+    [turned]=card.turned
+    (turnedChanged)="turnCardHandler($event)"
+  >
   </app-card>
 </div>

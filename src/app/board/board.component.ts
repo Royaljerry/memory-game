@@ -15,6 +15,7 @@ export class BoardComponent implements OnInit {
   groupArray = [];
   orderOfGroups: number[];
   cards: Card[];
+  turnedCards = 0;
 
   constructor() { }
 
@@ -42,6 +43,11 @@ export class BoardComponent implements OnInit {
       cards.push(card2);
     }
     return cards;
+  }
+
+  turnCardHandler(turn: boolean) {
+    this.turnedCards += turn ? 1 : -1;
+    console.log(this.turnedCards);
   }
 
   ngOnInit() {

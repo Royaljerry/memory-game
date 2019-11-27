@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -11,10 +11,13 @@ export class CardComponent implements OnInit {
   @Input() groupId: number;
   @Input() turned: boolean;
 
+  @Output() turnedChanged: EventEmitter<boolean> = new EventEmitter();
+
   constructor() { }
 
   swapCard() {
     this.turned = !this.turned;
+    this.turnedChanged.emit(this.turned);
   }
 
   ngOnInit() { }
