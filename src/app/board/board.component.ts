@@ -44,14 +44,6 @@ export class BoardComponent implements OnInit {
     return cards;
   }
 
-  // generateBoard() {
-  //
-  // }
-
-  // generatePair() {
-  //
-  // }
-
   ngOnInit() {
     this.numberOfCards = 2 * this.numberOfGroups;
 
@@ -60,7 +52,7 @@ export class BoardComponent implements OnInit {
     this.groupArray = this.fillArray(this.numberOfGroups);
     this.orderOfGroups = this.permutateArray(this.groupArray);
 
-    this.cards = this.generateCards(this.orderOfCards, this.orderOfGroups);
+    this.cards = this.permutateArray(this.generateCards(this.orderOfCards, this.orderOfGroups));
 
     console.log(this.cards);
 
