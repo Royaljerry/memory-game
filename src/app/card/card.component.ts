@@ -14,9 +14,11 @@ export class CardComponent implements OnInit {
 
   constructor() { }
 
-  swapCard() {
-    this.card.turned = !this.card.turned;
-    this.turnedChanged.emit(this.card.turned);
+  swapCard(turned) {
+    if (!turned) {
+      this.card.turned = true;
+      this.turnedChanged.emit(this.card.turned);
+    }
   }
 
   ngOnInit() { }
