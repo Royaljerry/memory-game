@@ -47,10 +47,10 @@ export class BoardComponent implements OnInit {
 
   resetCards() {
     for (const card of this.cards) {
-      card.turned = false; // why the fck it does not work?
+      card.turned = false;
     }
+    this.turnedCards = 0;
     console.log('Cards reset');
-    // console.log(this.cards);
   }
 
   turnCardHandler(turn: boolean) {
