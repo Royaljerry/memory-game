@@ -3,7 +3,7 @@
   <app-card
     *ngFor="let card of allCards"
     [card]="card"
-    (turnedChanged)="turnCardHandler($event, card)"
+    (turnedChanged)="handleCardTurn($event, card)"
   >
   </app-card>
 </div>

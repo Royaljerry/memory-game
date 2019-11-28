@@ -19,7 +19,7 @@ export class BoardComponent implements OnInit {
 
   constructor() { }
 
-  fillArray(arrayLength) {
+  fillArray(arrayLength: number) {
     return(new Array(arrayLength).fill(0, 0, arrayLength).map((x, i) => i));
   }
 
@@ -34,7 +34,7 @@ export class BoardComponent implements OnInit {
     return (permutatedArray);
   }
 
-  generateCards(orderOfCards, orderOfGroups) {
+  generateCards(orderOfCards: number[], orderOfGroups: number[]) {
     const cards: Card[] = [];
     for (let i = 0; i < orderOfGroups.length; i++) {
       const card1 = new Card(orderOfCards[2 * i], orderOfGroups[i], false, false);
@@ -45,26 +45,29 @@ export class BoardComponent implements OnInit {
     return cards;
   }
 
-  resetCards(currentCard) {
+  resetCards(currentCard: Card) {
     for (const card of this.allCards) {
       if (card !== currentCard) {
         card.turned = false;
       }
     }
     this.turnedCards = [currentCard];
-    console.log('Cards reset');
   }
 
   checkCardMatch(turnedCards) {
     return (turnedCards.map(card => card.groupId).reduce((acc, id) => (acc === id)));
   }
 
-  turnCardHandler(turn: boolean, card: Card) {
+  markCardsAsFound(foundCards) {
+
+  }
+
+  handleCardTurn(turn: boolean, card: Card) {
     if (turn) {
       this.turnedCards.push(card);
     }
-    if (this.turnedCards.length === 2) {
-      this.checkCardMatch(this.turnedCards);
+    if (this.turnedCards.length === 2 && this.checkCardMatch(this.turnedCards)) {
+      this.markCardsAsFound(this.turnedCards);
     }
     if (this.turnedCards.length === 3) {
       this.resetCards(card);
