@@ -2,9 +2,7 @@
   board
   <app-card
     *ngFor="let card of cards"
-    [cardId]=card.cardId
-    [groupId]=card.groupId
-    [turned]=card.turned
+    [card]="card"
     (turnedChanged)="turnCardHandler($event)"
   >
   </app-card>

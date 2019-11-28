@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Card } from '../card';
 
 @Component({
   selector: 'app-card',
@@ -7,17 +8,15 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-  @Input() cardId: number;
-  @Input() groupId: number;
-  @Input() turned: boolean;
+  @Input() card: Card;
 
   @Output() turnedChanged: EventEmitter<boolean> = new EventEmitter();
 
   constructor() { }
 
   swapCard() {
-    this.turned = !this.turned;
-    this.turnedChanged.emit(this.turned);
+    this.card.turned = !this.card.turned;
+    this.turnedChanged.emit(this.card.turned);
   }
 
   ngOnInit() { }
