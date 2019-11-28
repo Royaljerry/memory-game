@@ -14,8 +14,8 @@ export class BoardComponent implements OnInit {
   orderOfCards: number[];
   groupArray = [];
   orderOfGroups: number[];
-  cards: Card[];
-  turnedCards = 0;
+  allCards: Card[];
+  turnedCards: Card[] = [];
 
   constructor() { }
 
@@ -46,20 +46,21 @@ export class BoardComponent implements OnInit {
   }
 
   resetCards() {
-    for (const card of this.cards) {
+    for (const card of this.allCards) {
       card.turned = false;
     }
-    this.turnedCards = 0;
+    this.turnedCards = [];
     console.log('Cards reset');
   }
 
-  turnCardHandler(turn: boolean) {
-    this.turnedCards += turn ? 1 : -1;
-    if (this.turnedCards === 3) {
+  turnCardHandler(turn: boolean, card: Card) {
+    if (turn) {
+      this.turnedCards.push(card);
+    }
+    if (this.turnedCards.length === 3) {
       this.resetCards();
     }
     console.log(this.turnedCards);
-    console.log(this.cards);
   }
 
   ngOnInit() {
@@ -70,10 +71,6 @@ export class BoardComponent implements OnInit {
     this.groupArray = this.fillArray(this.numberOfGroups);
     this.orderOfGroups = this.permutateArray(this.groupArray);
 
-    this.cards = this.permutateArray(this.generateCards(this.orderOfCards, this.orderOfGroups));
-
-    console.log(this.cards);
-
-    console.log(this.orderOfCards);
+    this.allCards = this.permutateArray(this.generateCards(this.orderOfCards, this.orderOfGroups));
   }
 }

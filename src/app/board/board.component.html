@@ -1,9 +1,9 @@
 <div class="board">
   board
   <app-card
-    *ngFor="let card of cards"
+    *ngFor="let card of allCards"
     [card]="card"
-    (turnedChanged)="turnCardHandler($event)"
+    (turnedChanged)="turnCardHandler($event, card)"
   >
   </app-card>
 </div>
