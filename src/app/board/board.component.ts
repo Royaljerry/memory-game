@@ -53,9 +53,16 @@ export class BoardComponent implements OnInit {
     console.log('Cards reset');
   }
 
+  checkCardMatch(turnedCards) {
+    return (turnedCards.map(card => card.groupId).reduce((acc, id) => (acc === id)));
+  }
+
   turnCardHandler(turn: boolean, card: Card) {
     if (turn) {
       this.turnedCards.push(card);
+    }
+    if (this.turnedCards.length === 2) {
+      this.checkCardMatch(this.turnedCards);
     }
     if (this.turnedCards.length === 3) {
       this.resetCards();
