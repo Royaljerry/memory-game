@@ -37,8 +37,8 @@ export class BoardComponent implements OnInit {
   generateCards(orderOfCards, orderOfGroups) {
     const cards: Card[] = [];
     for (let i = 0; i < orderOfGroups.length; i++) {
-      const card1 = new Card(orderOfCards[2 * i], orderOfGroups[i], false);
-      const card2 = new Card(orderOfCards[(2 * i) + 1], orderOfGroups[i], false);
+      const card1 = new Card(orderOfCards[2 * i], orderOfGroups[i], false, false);
+      const card2 = new Card(orderOfCards[(2 * i) + 1], orderOfGroups[i], false, false);
       cards.push(card1);
       cards.push(card2);
     }
