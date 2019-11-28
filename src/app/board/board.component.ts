@@ -45,11 +45,13 @@ export class BoardComponent implements OnInit {
     return cards;
   }
 
-  resetCards() {
+  resetCards(currentCard) {
     for (const card of this.allCards) {
-      card.turned = false;
+      if (card !== currentCard) {
+        card.turned = false;
+      }
     }
-    this.turnedCards = [];
+    this.turnedCards = [currentCard];
     console.log('Cards reset');
   }
 
@@ -65,7 +67,7 @@ export class BoardComponent implements OnInit {
       this.checkCardMatch(this.turnedCards);
     }
     if (this.turnedCards.length === 3) {
-      this.resetCards();
+      this.resetCards(card);
     }
     console.log(this.turnedCards);
   }
