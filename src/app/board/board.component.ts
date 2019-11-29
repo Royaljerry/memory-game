@@ -54,8 +54,12 @@ export class BoardComponent implements OnInit {
     this.turnedCards = [currentCard];
   }
 
-  checkCardMatch(turnedCards) {
+  doCardsMatch(turnedCards) {
     return (turnedCards.map(card => card.groupId).reduce((acc, id) => (acc === id)));
+  }
+
+  isBoardSolved(allCards: Card[]) {
+    return (allCards.map(card => card.found).every(id => id === true));
   }
 
   markCardsAsFound(foundCards: Card[]) {
@@ -68,13 +72,13 @@ export class BoardComponent implements OnInit {
     if (turn) {
       this.turnedCards.push(card);
     }
-    if (this.turnedCards.length === 2 && this.checkCardMatch(this.turnedCards)) {
+    if (this.turnedCards.length === 2 && this.doCardsMatch(this.turnedCards)) {
       this.markCardsAsFound(this.turnedCards);
+      console.log(this.isBoardSolved(this.allCards));
     }
     if (this.turnedCards.length === 3) {
       this.resetCards(card, this.allCards);
     }
-    console.log(this.turnedCards);
   }
 
   ngOnInit() {
