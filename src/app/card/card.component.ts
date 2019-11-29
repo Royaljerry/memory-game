@@ -14,10 +14,10 @@ export class CardComponent implements OnInit {
 
   constructor() { }
 
-  swapCard(turned) {
-    if (!turned) {
-      this.card.turned = true;
-      this.turnedChanged.emit(this.card.turned);
+  swapCard(card: Card) {
+    if (!card.turned && !card.found) {
+      card.turned = true;
+      this.turnedChanged.emit(card.turned);
     }
   }
 

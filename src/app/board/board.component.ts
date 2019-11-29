@@ -45,9 +45,9 @@ export class BoardComponent implements OnInit {
     return cards;
   }
 
-  resetCards(currentCard: Card) {
-    for (const card of this.allCards) {
-      if (card !== currentCard) {
+  resetCards(currentCard: Card, allCards: Card[]) {
+    for (const card of allCards) {
+      if (card !== currentCard && !card.found) {
         card.turned = false;
       }
     }
@@ -58,8 +58,10 @@ export class BoardComponent implements OnInit {
     return (turnedCards.map(card => card.groupId).reduce((acc, id) => (acc === id)));
   }
 
-  markCardsAsFound(foundCards) {
-
+  markCardsAsFound(foundCards: Card[]) {
+    for (const card of foundCards) {
+      card.found = true;
+    }
   }
 
   handleCardTurn(turn: boolean, card: Card) {
@@ -70,7 +72,7 @@ export class BoardComponent implements OnInit {
       this.markCardsAsFound(this.turnedCards);
     }
     if (this.turnedCards.length === 3) {
-      this.resetCards(card);
+      this.resetCards(card, this.allCards);
     }
     console.log(this.turnedCards);
   }
