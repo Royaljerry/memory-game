@@ -9,16 +9,27 @@ import { Card } from '../card';
 export class CardComponent implements OnInit {
 
   @Input() card: Card;
+  private imagePath: string;
 
   @Output() turnedChanged: EventEmitter<boolean> = new EventEmitter();
 
-  constructor() { }
+  get path(): string {
+    return this.imagePath;
+  }
+
+  set path(groupId) {
+    this.imagePath = '@content-images/test.jpg';
+  }
 
   swapCard(card: Card) {
     if (!card.turned && !card.found) {
       card.turned = true;
       this.turnedChanged.emit(card.turned);
     }
+  }
+
+  constructor() {
+    this.path = 'hello';
   }
 
   ngOnInit() { }
