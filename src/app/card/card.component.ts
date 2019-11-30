@@ -10,15 +10,12 @@ export class CardComponent implements OnInit {
 
   @Input() card: Card;
   private imagePath: string;
+  imagePathRoot = 'assets/content/images/';
 
   @Output() turnedChanged: EventEmitter<boolean> = new EventEmitter();
 
-  get path(): string {
-    return this.imagePath;
-  }
+  constructor() {
 
-  set path(groupId) {
-    this.imagePath = '@content-images/test.jpg';
   }
 
   swapCard(card: Card) {
@@ -28,10 +25,9 @@ export class CardComponent implements OnInit {
     }
   }
 
-  constructor() {
-    this.path = 'hello';
+  ngOnInit() {
+    this.imagePath = this.imagePathRoot + '/group-' + Number(this.card.groupId + 1) + '.jpg';
+    console.log(this.imagePath);
   }
-
-  ngOnInit() { }
 
 }
