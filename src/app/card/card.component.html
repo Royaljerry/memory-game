@@ -1,7 +1,9 @@
-<img src="{{ imagePath }}" alt="" />
-<p (click)="swapCard(card)">
-  card {{ card.cardId }},
-  group {{ card.groupId }},
-  turned {{ card.turned }},
-  found {{ card.found }}
-</p>
+<div class="card">
+  <img src="{{ imagePath }}" alt="" />
+  <p (click)="swapCard(card)">
+    card {{ card.cardId }},
+    group {{ card.groupId }},
+    turned {{ card.turned }},
+    found {{ card.found }}
+  </p>
+</div>
