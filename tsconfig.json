@@ -5,6 +5,9 @@
     "paths": {
       "@content-images/*": [
         "src/app/assets/content/images/*"
+      ],
+      "@content-data": [
+        "src/app/assets/content/*"
       ]
     },
     "outDir": "./dist/out-tsc",
