@@ -3,11 +3,14 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@content-images/*": [
+      "@assets/*": [
+        "src/app/assets/*"
+      ],
+      "@images/*": [
         "src/app/assets/content/images/*"
       ],
-      "@content-data": [
-        "src/app/assets/content/*"
+      "@data": [
+        "src/app/assets/data.json"
       ]
     },
     "outDir": "./dist/out-tsc",
