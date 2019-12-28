@@ -9,6 +9,7 @@ import { Card } from '../../classes/card';
 export class BoardComponent implements OnInit {
 
   @Input() numberOfGroups: number;
+  @Input() data: [];
   numberOfCards: number;
   orderArray = [];
   orderOfCards: number[];
@@ -82,6 +83,8 @@ export class BoardComponent implements OnInit {
   }
 
   ngOnInit() {
+    setTimeout(_ => { console.log(this.data); }, 2000);
+
     this.numberOfCards = 2 * this.numberOfGroups;
 
     this.orderArray = this.fillArray(this.numberOfCards);

@@ -7,14 +7,19 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  dataFile = 'assets/data.json';
+  dataValues: any = [];
   title: string;
-  numberOfGroups: number;
-  hello: string;
 
   constructor(private httpClient: HttpClient) {}
-  ngOnInit() {
-    this.httpClient.get('assets/data.json').subscribe(data => {
-      console.log(data);
+
+  getData(dataFile: string) {
+    this.httpClient.get(dataFile).subscribe(data => {
+      this.dataValues = data;
     });
+  }
+
+  ngOnInit() {
+    this.getData(this.dataFile);
   }
 }
