@@ -5,11 +5,17 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
+      "@classes/*": [
+        "src/app/classes/*"
+      ],
+      "@components/*": [
+        "src/app/components/*"
+      ],
       "@assets/*": [
         "src/app/assets/*"
       ],
-      "@images/*": [
-        "src/app/assets/content/images/*"
+      "@models/*": [
+        "src/app/models/*"
       ],
       "@data": [
         "src/app/assets/data.json"

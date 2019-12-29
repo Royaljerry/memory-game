@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Card } from '../../classes/card';
+import { Card } from '@classes/card';
 
 @Component({
   selector: 'app-card',
@@ -10,7 +10,6 @@ export class CardComponent implements OnInit {
 
   @Input() card: Card;
   private imagePath: string;
-  imagePathRoot = 'assets/content/images/';
 
   @Output() turnedChanged: EventEmitter<boolean> = new EventEmitter();
 
@@ -26,7 +25,7 @@ export class CardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.imagePath = this.imagePathRoot + '/group-' + Number(this.card.groupId + 1) + '.jpg';
+    this.imagePath = '/images/group-' + Number(this.card.groupId + 1) + '.jpg';
     console.log(this.imagePath);
   }
 

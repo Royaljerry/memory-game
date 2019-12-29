@@ -26,6 +26,7 @@
             "assets": [
               { "glob": "**/*", "input": "src/assets/", "output": "/assets/" },
               { "glob": "**/*", "input": "src/app/assets/", "output": "/assets/" },
+              { "glob": "**/*", "input": "src/app/assets/content/images", "output": "/images/" },
               { "glob": "favicon.ico", "input": "src/", "output": "/" }
             ],
             "styles": [

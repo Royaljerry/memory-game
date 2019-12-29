@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Card } from '../../classes/card';
+import { Data } from '@models/data.model';
+import { Card } from '@classes/card';
 
 @Component({
   selector: 'app-board',
@@ -9,7 +10,7 @@ import { Card } from '../../classes/card';
 export class BoardComponent implements OnInit {
 
   @Input() numberOfGroups: number;
-  @Input() data: [];
+  @Input() data: Data;
   numberOfCards: number;
   orderArray = [];
   orderOfCards: number[];
