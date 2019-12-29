@@ -1,3 +1,5 @@
+import { RjString } from '@utilities/rj-string';
+
 export class RjNumber {
 
   // Taken from https://www.geeksforgeeks.org/prime-factor/
@@ -21,6 +23,18 @@ export class RjNumber {
     }
 
     return primeFactors;
+  }
+
+  static findSubsets(arr: number[]) {
+    const divisors: string[] = [];
+
+    const power = arr.length;
+    const max = Math.pow(2, power);
+    for (let i = 0; i < max; i++) {
+      const iStr = i.toString(2);
+      divisors.push(RjString.fill(iStr, power));
+    }
+    return divisors;
   }
 
 }
