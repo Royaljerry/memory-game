@@ -83,9 +83,10 @@ export class BoardComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(_ => { console.log(this.data); }, 2000);
-
+    this.numberOfGroups = this.data.numberOfGroups;
     this.numberOfCards = 2 * this.numberOfGroups;
+
+    console.log(this.numberOfCards);
 
     this.orderArray = this.fillArray(this.numberOfCards);
     this.orderOfCards = this.permutateArray(this.orderArray);

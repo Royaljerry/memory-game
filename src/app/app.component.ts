@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import data from '@assets/data.json';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +7,10 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  dataFile = 'assets/data.json';
-  dataValues: any = [];
+  dataValues: any = data;
   title: string;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor() {}
 
-  getData(dataFile: string) {
-    this.httpClient.get(dataFile).subscribe(data => {
-      this.dataValues = data;
-    });
-  }
-
-  ngOnInit() {
-    this.getData(this.dataFile);
-  }
+  ngOnInit() {}
 }
