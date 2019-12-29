@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RjArray } from '@utilities/RjArray';
+import { RjArray } from '@utilities/rj-array';
+import { RjNumber } from '@utilities/rj-number';
 import { Data } from '@models/data.model';
 import { Card } from '@classes/card';
 
@@ -70,6 +71,8 @@ export class BoardComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(RjNumber.findPrimeFactors(315));
+
     this.numberOfGroups = this.data.numberOfGroups;
     this.numberOfCards = 2 * this.numberOfGroups;
 

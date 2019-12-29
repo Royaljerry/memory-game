@@ -1,4 +1,4 @@
-import { RjArray } from './RjArray';
+import { RjArray } from './rj-array';
 
 describe('Array', () => {
   it('should create an instance', () => {
