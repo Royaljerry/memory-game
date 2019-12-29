@@ -17,6 +17,9 @@
       "@models/*": [
         "src/app/models/*"
       ],
+      "@utilities/*": [
+        "src/app/utilities/*"
+      ],
       "@data": [
         "src/app/assets/data.json"
       ]
