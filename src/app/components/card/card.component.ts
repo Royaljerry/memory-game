@@ -9,7 +9,7 @@ import { Card } from '@classes/card';
 export class CardComponent implements OnInit {
 
   @Input() card: Card;
-  private imagePath: string;
+  imagePath: string;
 
   @Output() turnedChanged: EventEmitter<boolean> = new EventEmitter();
 
