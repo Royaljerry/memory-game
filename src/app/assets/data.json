@@ -1,9 +1,4 @@
 {
   "title": "Memory Game in Black Dog",
-  "numberOfGroups": 20,
-  "hello": "world again",
-  "layoutRatios": {
-    "portrait": [5, 8],
-    "landscape": [1, 2]
-  }
+  "numberOfGroups": 9
 }

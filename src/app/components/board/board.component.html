@@ -1,4 +1,6 @@
-<div class="board">
+<div class="board"
+  [ngStyle]="setupBoardGrid(this.sideLengths)"
+>
   <app-card
     *ngFor="let card of allCards"
     [card]="card"

@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RjArray } from '@utilities/rj-array';
 import { RjNumber } from '@utilities/rj-number';
-import { Data } from '@models/data.model';
 import { Card } from '@classes/card';
 
 @Component({
@@ -11,10 +10,11 @@ import { Card } from '@classes/card';
 })
 export class BoardComponent implements OnInit {
 
-  @Input() numberOfGroups: number;
-  @Input() data: Data;
+  @Input() data;
+  numberOfGroups: number;
   numberOfCards: number;
   divisorsOfNumberOfCards: number[];
+  sideLengths: number[];
   orderArray = [];
   orderOfCards: number[];
   groupArray = [];
@@ -23,6 +23,26 @@ export class BoardComponent implements OnInit {
   turnedCards: Card[] = [];
 
   constructor() { }
+
+  getSideLengths(divisors: number[]) {
+    let centerItem;
+    let centerItems;
+    if (divisors.length % 2 === 0) {
+      centerItems = divisors.filter((e, i, a) => i === a.length / 2 || i === a.length / 2 - 1);
+    } else {
+      centerItem = divisors.filter((e, i, a) => i === (a.length - 1) / 2);
+      centerItems = [...centerItem, ...centerItem];
+    }
+    return centerItems;
+  }
+
+  setupBoardGrid(sideLengths: number[]) {
+    sideLengths = window.innerWidth >= window.innerHeight ? [sideLengths[1], sideLengths[0]] : sideLengths;
+    return {
+      'grid-template-columns': `repeat(${sideLengths[0]}, 1fr)`,
+      'grid-template-rows': `repeat(${sideLengths[1]}, 1fr)`
+    };
+  }
 
   generateCards(orderOfCards: number[], orderOfGroups: number[]) {
     const cards: Card[] = [];
@@ -75,8 +95,7 @@ export class BoardComponent implements OnInit {
     this.numberOfGroups = this.data.numberOfGroups;
     this.numberOfCards = 2 * this.numberOfGroups;
     this.divisorsOfNumberOfCards = RjNumber.findDivisors(this.numberOfCards);
-
-    console.log(this.divisorsOfNumberOfCards);
+    this.sideLengths = this.getSideLengths(this.divisorsOfNumberOfCards);
 
     this.orderArray = RjArray.fillArray(this.numberOfCards);
     this.orderOfCards = RjArray.permutateArray(this.orderArray);
