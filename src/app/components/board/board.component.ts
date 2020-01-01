@@ -71,13 +71,11 @@ export class BoardComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(RjNumber.findPrimeFactors(315));
-    console.log(RjNumber.findSubsets([0, 1, 2, 3, 4]));
+    const testFactors = RjNumber.findPrimeFactors(315);
+    console.log(testFactors);
 
     this.numberOfGroups = this.data.numberOfGroups;
     this.numberOfCards = 2 * this.numberOfGroups;
-
-    console.log(this.numberOfCards);
 
     this.orderArray = RjArray.fillArray(this.numberOfCards);
     this.orderOfCards = RjArray.permutateArray(this.orderArray);
