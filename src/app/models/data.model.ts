@@ -1,5 +1,8 @@
 export interface Data {
   title: string;
   numberOfGroups: number;
-  hello: string;
+  layoutRatios: {
+    portrait: number[];
+    landscape: number[];
+  };
 }

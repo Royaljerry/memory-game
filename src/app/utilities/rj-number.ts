@@ -1,5 +1,3 @@
-import { RjString } from '@utilities/rj-string';
-
 export class RjNumber {
 
   // Based on https://rosettacode.org/wiki/Proper_divisors#ES6
