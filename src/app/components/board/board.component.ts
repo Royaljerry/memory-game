@@ -14,6 +14,7 @@ export class BoardComponent implements OnInit {
   @Input() numberOfGroups: number;
   @Input() data: Data;
   numberOfCards: number;
+  divisorsOfNumberOfCards: number[];
   orderArray = [];
   orderOfCards: number[];
   groupArray = [];
@@ -71,11 +72,11 @@ export class BoardComponent implements OnInit {
   }
 
   ngOnInit() {
-    const testFactors = RjNumber.findPrimeFactors(315);
-    console.log(testFactors);
-
     this.numberOfGroups = this.data.numberOfGroups;
     this.numberOfCards = 2 * this.numberOfGroups;
+    this.divisorsOfNumberOfCards = RjNumber.findDivisors(this.numberOfCards);
+
+    console.log(this.divisorsOfNumberOfCards);
 
     this.orderArray = RjArray.fillArray(this.numberOfCards);
     this.orderOfCards = RjArray.permutateArray(this.orderArray);
