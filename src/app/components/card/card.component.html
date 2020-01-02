@@ -1,3 +1,7 @@
 <div class="card">
-  <img (click)="swapCard(card)" src="{{ imagePath }}" alt="" />
+  <img
+    (click)="swapCard(card)"
+    src="{{ getImagePath(card) }}"
+    alt=""
+  />
 </div>
