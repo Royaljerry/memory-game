@@ -17,15 +17,25 @@ export class CardComponent implements OnInit {
 
   }
 
+  resetCard(card: Card) {
+
+  }
+
   swapCard(card: Card) {
-    if (!card.turned && !card.found) {
-      card.turned = true;
-      this.turnedChanged.emit(card.turned);
+    console.log(card, ' before: ', this.imagePath);
+    if (!card.found) {
+      if (!card.turned) {
+        card.turned = true;
+        this.imagePath = '/images/group-' + Number(this.card.groupId + 1) + '.jpg';
+        this.turnedChanged.emit(card.turned);
+      }
+      // this.imagePath = card.turned ? '/images/group-' + Number(this.card.groupId + 1) + '.jpg' : '/images/backface.png';
+      console.log(card, ' after: ', this.imagePath);
     }
   }
 
   ngOnInit() {
-    this.imagePath = '/images/group-' + Number(this.card.groupId + 1) + '.jpg';
+    this.imagePath = '/images/backface.png';
     console.log(this.imagePath);
   }
 

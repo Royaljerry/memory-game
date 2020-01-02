@@ -47,8 +47,8 @@ export class BoardComponent implements OnInit {
   generateCards(orderOfCards: number[], orderOfGroups: number[]) {
     const cards: Card[] = [];
     for (let i = 0; i < orderOfGroups.length; i++) {
-      const card1 = new Card(orderOfCards[2 * i], orderOfGroups[i], false, false);
-      const card2 = new Card(orderOfCards[(2 * i) + 1], orderOfGroups[i], false, false);
+      const card1 = new Card(orderOfCards[2 * i], orderOfGroups[i], '', false, false);
+      const card2 = new Card(orderOfCards[(2 * i) + 1], orderOfGroups[i], '', false, false);
       cards.push(card1);
       cards.push(card2);
     }
@@ -58,6 +58,7 @@ export class BoardComponent implements OnInit {
   resetCards(currentCard: Card, allCards: Card[]) {
     for (const card of allCards) {
       if (card !== currentCard && !card.found) {
+        card.imagePath = '/images/backface.png';
         card.turned = false;
       }
     }
