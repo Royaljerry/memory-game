@@ -1,6 +1,13 @@
-<div class="card">
+<div
+  class="card"
+  [ngStyle]="{
+    width: this.width,
+    height: this.height,
+    maxWidth: this.maxWidth,
+    maxHeight: this.maxHeight
+  }"
+>
   <img
-    [ngStyle]="setupCardDimensions(sideLengths)"
     (click)="swapCard(card)"
     src="{{ getImagePath(card) }}"
     alt=""
