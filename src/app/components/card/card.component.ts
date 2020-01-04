@@ -19,17 +19,17 @@ export class CardComponent implements OnInit {
   }
 
   setupCardDimensions(sideLengths) {
-    const isPortrait = RjViewport.isPortrait;
-    const spreadBase = isPortrait ? '100vh' : '100vw';
-    const spreadMax = !isPortrait ? '100vh' : '100vw';
-    const sideLengthMax = !isPortrait ? sideLengths[1] : sideLengths[0];
-    console.log(isPortrait, spreadBase, spreadMax);
-    return {
-      width: `calc((${spreadBase} - ${sideLengths[0] - 1} * 16px) / ${sideLengths[0]})`,
-      height: `calc((${spreadBase} - ${sideLengths[0] - 1} * 16px) / ${sideLengths[0]})`,
-      maxWidth: `calc((${spreadMax} - ${sideLengthMax - 1} * 16px) / ${sideLengthMax})`,
-      maxHeight: `calc((${spreadMax} - ${sideLengthMax - 1} * 16px) / ${sideLengthMax})`
-    };
+    // const isPortrait = RjViewport.isPortrait;
+    // const spreadBase = isPortrait ? '100vh' : '100vw';
+    // const spreadMax = !isPortrait ? '100vh' : '100vw';
+    // const sideLengthMax = !isPortrait ? sideLengths[1] : sideLengths[0];
+    // console.log(isPortrait, spreadBase, spreadMax);
+    // return {
+    //   width: `calc((${spreadBase} - ${sideLengths[0] - 1} * 16px) / ${sideLengths[0]})`,
+    //   height: `calc((${spreadBase} - ${sideLengths[0] - 1} * 16px) / ${sideLengths[0]})`,
+    //   maxWidth: `calc((${spreadMax} - ${sideLengthMax - 1} * 16px) / ${sideLengthMax})`,
+    //   maxHeight: `calc((${spreadMax} - ${sideLengthMax - 1} * 16px) / ${sideLengthMax})`
+    // };
   }
 
   getImagePath(card: Card) {
