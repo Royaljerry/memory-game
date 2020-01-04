@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RjArray } from '@utilities/rj-array';
 import { RjNumber } from '@utilities/rj-number';
+import { RjViewport } from '@utilities/rj-viewport';
 import { Card } from '@classes/card';
 
 @Component({
@@ -33,7 +34,7 @@ export class BoardComponent implements OnInit {
       centerItem = divisors.filter((e, i, a) => i === (a.length - 1) / 2);
       centerItems = [...centerItem, ...centerItem];
     }
-    centerItems = window.innerWidth >= window.innerHeight ? [centerItems[1], centerItems[0]] : centerItems;
+    centerItems = RjViewport.isPortrait ? centerItems : [centerItems[1], centerItems[0]];
     return centerItems;
   }
 
