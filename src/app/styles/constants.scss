@@ -1,0 +1,217 @@
+// ********************************************************
+// COLORS
+// ********************************************************
+
+// ========================================
+// Generics
+// ========================================
+
+$color__black: #000000;
+$color__white: #ffffff;
+$color__transparent: rgba(0,0,0,0);
+
+// ========================================
+// Primary
+// ========================================
+
+$color__brand--primary-green: #74bd56; // 116, 189, 86
+$color__brand--brand-green: #c9ee00; // 201, 238, 0
+$color__brand--base-dark-blue: #00223e; // 0, 34, 62
+
+// ========================================
+// Secondary
+// ========================================
+
+$color__ui--warning-error: #d0021b; // 208, 2, 27
+$color__ui--validation: #4faf3e; // 79, 175, 62
+$color__ui--link-blue: #0074ee; // 0, 116, 238
+$color__ui--deeplink-cta: #ff5600; // 255, 86, 0
+$color__ui--watch-out: #eb5769; // 235, 87, 105
+
+// ========================================
+// Grays
+// ========================================
+
+$color__notification--http-error-light: #fae5e8; // 250, 229, 232
+$color__notification--http-error-dark: $color__ui--warning-error;
+$color__notification--no-internet-light: #f9e8bb; // 249, 232, 187
+$color__notification--no-internet-dark: $color__ui--deeplink-cta;
+
+// ********************************************************
+// TYPOGRAPHY
+// ********************************************************
+
+// ========================================
+// Font Families
+// ========================================
+
+$typography__font-family--default: "Open Sans", Helvetica, Arial, sans-serif;
+
+// ========================================
+// Font Sizes
+// ========================================
+
+$typography__font-size--title: (
+  "display": 2.5rem,
+  "sub": 1rem,
+  "level-1": 2.25rem,
+  "level-2": 1.875rem,
+  "level-3": 1.25rem,
+  "level-4": 1.125rem,
+  "level-5": 0.875rem
+);
+
+$typography__font-size--3XS: 0.6875rem; // 11px
+$typography__font-size--2XS: 0.7500rem; //12px
+$typography__font-size--1XS: 0.8125rem; //13px
+$typography__font-size--S: 0.8750rem; //14px
+$typography__font-size--M: 1.0000rem; //16px
+$typography__font-size--L: 1.1250rem; //18px
+$typography__font-size--1XL: 1.2500rem; //20px
+$typography__font-size--2XL: 1.3750rem; //22px
+$typography__font-size--3XL: 1.5000rem; //24px
+
+// ========================================
+// Font Weights
+// ========================================
+
+$typography__font-weight--regular: 400;
+$typography__font-weight--semi-bold: 600;
+$typography__font-weight--bold: 700;
+
+// ========================================
+// Line Heights //ToDo: refactor names
+// ========================================
+
+$typography__line-height--1XS: 1.125;
+$typography__line-height--S: 1.2;
+$typography__line-height--M: 1.3;
+$typography__line-height--L: 1.4;
+$typography__line-height--1XL: 1.5;
+$typography__line-height--2XL: 1.6;
+
+// ********************************************************
+// BREAKPOINTS
+// ********************************************************
+
+$breakpoint__3XS: 20rem; //320px
+$breakpoint__2XS: 23.4375rem; // 375px
+$breakpoint__1XS: 30rem; // 480px
+$breakpoint__S: 37.5rem; // 600px
+$breakpoint__M: 48rem; // 768px
+$breakpoint__L: 64rem; // 1024px
+$breakpoint__1XL: 68rem; // 1088px
+$breakpoint__2XL: 80rem; // 1280px
+$breakpoint__3XL: 90rem; // 1440px
+
+// ********************************************************
+// METRICS
+// ********************************************************
+
+// ========================================
+// Units
+// ========================================
+
+$rem-base: 16px !default;
+
+$metrics__unit-base--S: $rem-base / 2;
+$metrics__unit-base--M: $rem-base;
+$metrics__unit-base--L: $rem-base * 1.5;
+$metrics__unit-base--XL: $rem-base * 2;
+
+// ========================================
+// Content Widths
+// ========================================
+
+$metrics__content-width--4XS: 18rem; // 288px
+$metrics__content-width--3XS: $breakpoint__3XS;
+$metrics__content-width--2XS: $breakpoint__2XS;
+$metrics__content-width--1XS: $breakpoint__1XS;
+$metrics__content-width--S: $breakpoint__S;
+$metrics__content-width--M: $breakpoint__M;
+$metrics__content-width--L: 58rem; // 928px
+$metrics__content-width--1XL: 63rem; // 1008px
+$metrics__content-width--2XL: $breakpoint__L;
+$metrics__content-width--3XL: $breakpoint__2XL;
+$metrics__content-width--4XL: $breakpoint__3XL;
+
+// ========================================
+// Form Elements
+// ========================================
+
+$metrics__form-height--M: 3rem;
+
+$metrics__form-input-height--M: $metrics__form-height--M;
+$metrics__form-textarea-height--M: 9rem;
+$metrics__form-button-height--M: $metrics__form-height--M;
+
+// ========================================
+// Buttons
+// ========================================
+
+$metrics__button-height--S: rem-calc(32);
+$metrics__button-height--M: rem-calc(48);
+$metrics__button-height--L: rem-calc(56);
+
+// ========================================
+// Gaps
+// ========================================
+
+$metrics__gap--2XS: 0.1250rem;
+$metrics__gap--1XS: 0.2500rem;
+$metrics__gap--S: 0.5000rem;
+$metrics__gap--M: 0.6250rem;
+$metrics__gap--L: 1.0000rem;
+$metrics__gap--1XL: 1.5000rem;
+$metrics__gap--2XL: 2.0000rem;
+$metrics__gap--3XL: 2.5000rem;
+$metrics__gap--4XL: 3.0000rem;
+$metrics__gap--5XL: 3.5000rem;
+$metrics__gap--6XL: 4.0000rem;
+
+// ========================================
+// Spreads
+// ========================================
+
+$metrics__spread--3XS: 0.0625rem; // 1px;
+$metrics__spread--2XS: 0.1250rem; // 2px;
+$metrics__spread--1XS: 0.1875rem; // 3px;
+$metrics__spread--S: 0.3750rem; // 6px;
+$metrics__spread--M: 0.5000rem; // 8px;
+$metrics__spread--L: 0.6250rem; // 10px;
+$metrics__spread--1XL: 1.2500rem; // 20px;
+$metrics__spread--2XL: 1.5625rem; // 25px;
+
+// ========================================
+// Roundings
+// ========================================
+
+$metrics__rounding--1XS: 0.2500rem;
+$metrics__rounding--S: 0.3750rem;
+$metrics__rounding--M: 0.5000rem;
+$metrics__rounding--L: 1.0000rem;
+$metrics__rounding--1XL: 2.000rem;
+
+// ========================================
+// Heights //ToDo
+// ========================================
+
+$metrics__header-height--mobile: 4rem;
+$metrics__header-height--desktop: 5rem;
+
+// ********************************************************
+// Z-indices //ToDo
+// ********************************************************
+
+$z-index-notification: 2000;
+$z-index-header: 10;
+
+// ********************************************************
+// TRANSITIONS
+// ********************************************************
+
+$transition__faster: 0.2s;
+$transition__fast: 0.25s;
+$transition__base: 0.3s;
+$transition__slow: 0.4s;
+$transition__slower: 0.5s;

@@ -1,10 +1,14 @@
-<div class="board"
-  [ngStyle]="setupBoardGrid(this.sideLengths)"
->
-  <app-card
-    *ngFor="let card of allCards"
-    [card]="card"
-    (turnedChanged)="handleCardTurn($event, card)"
+<div class="board">
+  <div
+    [ngStyle]="setupCardsGrid(this.sideLengths)"
+    class="cards"
   >
-  </app-card>
+    <app-card
+      *ngFor="let card of allCards"
+      [card]="card"
+      [sideLengths]="sideLengths"
+      (turnedChanged)="handleCardTurn($event, card)"
+    >
+    </app-card>
+  </div>
 </div>

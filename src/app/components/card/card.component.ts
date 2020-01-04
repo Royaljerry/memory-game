@@ -9,11 +9,16 @@ import { Card } from '@classes/card';
 export class CardComponent implements OnInit {
 
   @Input() card: Card;
+  @Input() sideLengths: number[];
 
   @Output() turnedChanged: EventEmitter<boolean> = new EventEmitter();
 
   constructor() {
 
+  }
+
+  setupCardDimensions(sideLengths) {
+    const largerSpread = Math.max(window.innerWidth, window.innerHeight);
   }
 
   getImagePath(card: Card) {

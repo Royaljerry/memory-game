@@ -36,7 +36,7 @@ export class BoardComponent implements OnInit {
     return centerItems;
   }
 
-  setupBoardGrid(sideLengths: number[]) {
+  setupCardsGrid(sideLengths: number[]) {
     sideLengths = window.innerWidth >= window.innerHeight ? [sideLengths[1], sideLengths[0]] : sideLengths;
     return {
       'grid-template-columns': `repeat(${sideLengths[0]}, 1fr)`,

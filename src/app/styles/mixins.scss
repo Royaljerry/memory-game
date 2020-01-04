@@ -1,0 +1,332 @@
+// CONSTANTS
+@import "constants";
+@import "functions";
+
+// Responsive
+
+@mixin respondFrom($minWidth, $forcePortrait: false) {
+  @if $forcePortrait {
+    @media (min-width: $minWidth) and (orientation: portrait) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $minWidth) {
+      @content;
+    }
+  }
+}
+
+@mixin respondFontSizeFrom($minWidth, $fontSize) {
+  @media (min-width: $minWidth) {
+    font-size: $fontSize;
+    @content;
+  }
+}
+
+@mixin respondTo($maxWidth) {
+  @media (max-width: $maxWidth) {
+    @content;
+  }
+}
+
+@mixin respondToLandscape() {
+  @media screen and (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin landscapeModeForIphoneX() {
+  @media screen and (orientation: landscape) {
+    padding-left: calc(#{$metrics__unit-base--M} + env(safe-area-inset-left));
+    padding-right: calc(#{$metrics__unit-base--M} + env(safe-area-inset-right));
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@mixin positionGridItem($rowStart, $columnStart, $rowEnd: $rowStart, $columnEnd: $columnStart) {
+  grid-row-start: $rowStart;
+  grid-row-end: $rowEnd;
+  grid-column-start: $columnStart;
+  grid-column-end: $columnEnd;
+}
+
+@mixin repositionGridItem($rowStart, $columnStart, $rowEnd: $rowStart, $columnEnd: $columnStart, $breakpoint) {
+  @include respondFrom($breakpoint) {
+    @include positionGridItem($rowStart, $columnStart, $rowEnd: $rowStart, $columnEnd: $columnStart);
+  }
+}
+
+// Side-margin
+
+@mixin sideMargin() {
+  margin: 0 $metrics__unit-base--M;
+
+  @include respondFrom($breakpoint__2XS) {
+    margin: 0 $metrics__unit-base--L;
+  }
+}
+
+// Typography
+
+// ToDo: eliminate llg-typography-... mixins, use explicit values instead
+
+@mixin gaps($padding: 0, $margin: 0) {
+  padding: $padding;
+  margin: $margin;
+}
+
+@mixin text(
+  $font-size,
+  $font-weight,
+  $line-height,
+  $text-align: left,
+  $color: "mid"
+) {
+  $font-weights: (
+    "regular": $typography__font-weight--regular,
+    "semi-bold": $typography__font-weight--semi-bold,
+    "bold": $typography__font-weight--bold
+  );
+  $line-heights: (
+    "s": $typography__line-height--S, // 12 "thick"
+    "m": $typography__line-height--M, // 13 "normal"
+    "l": $typography__line-height--L, // 14
+    "xl": $typography__line-height--1XL, // 15 "sparse"
+    "xxl": $typography__line-height--2XL // 16 "rare"
+  );
+  $colors: (
+    "white": $color__white,
+    "light": $color__greys--5,
+    "pale": $color__greys--35,
+    "mid": $color__greys--50,
+    "dark": $color__brand--base-dark-blue,
+    "cta": $color__ui--deeplink-cta,
+    "link": $color__ui--link-blue,
+    "warning": $color__ui--warning-error,
+    "black": $color__black
+  );
+  font-family: $typography__font-family--default;
+  font-size: $font-size;
+  font-weight: get_item_or_default($font-weights, $font-weight);
+  line-height: get_item_or_default($line-heights, $line-height);
+  text-align: $text-align;
+  color: get_item_or_default($colors, $color);
+}
+
+@mixin heading(
+  $level: display,
+  $align: center,
+  $scheme: light
+) {
+  $text-color: "";
+  @if $scheme == light {
+    $text-color: $color__brand--base-dark-blue;
+  } @else if $scheme == dark {
+    $text-color: $color__greys--5;
+  } @else if $scheme == alternate {
+    $text-color: $color__ui--validation;
+  } @else {
+    $text-color: $color__brand--base-dark-blue;
+    @warn "Unknown color scheme '#{$scheme}' – 'light' applied instead.";
+  }
+  @if $align != center and $align != left {
+    @warn "Unknown alignment mode '#{$align}' – 'center' applied instead.";
+    $align: center
+  }
+  @if map_has_not_key($typography__font-size--title, $level) {
+    @warn "Unknown level '#{$level}' – 'display' applied instead.";
+    $level: display;
+  }
+
+  font-size: map_get($typography__font-size--title, $level);
+  text-align: $align;
+  color: $text-color;
+  @if $level == display {
+    font-weight: $typography__font-weight--semi-bold;
+    line-height: $typography__line-height--S;
+  }
+  @if $level == sub {
+    font-weight: $typography__font-weight--regular;
+    line-height: $typography__line-height--2XL;
+  }
+  @if $level == level-1 {
+    font-weight: $typography__font-weight--semi-bold;
+    line-height: $typography__line-height--M;
+  }
+  @if $level == level-2 {
+    font-weight: $typography__font-weight--semi-bold;
+    line-height: $typography__line-height--S;
+  }
+  @if $level == level-3 {
+    font-weight: $typography__font-weight--semi-bold;
+    line-height: $typography__line-height--M;
+  }
+  @if $level == level-4 {
+    font-weight: $typography__font-weight--semi-bold;
+    line-height: $typography__line-height--L;
+  }
+  @if $level == level-5 {
+    font-weight: $typography__font-weight--bold;
+    line-height: $typography__line-height--L;
+    text-transform: uppercase;
+  }
+}
+
+@mixin link(
+  $font-size: inherit,
+  $font-weight: $typography__font-weight--regular,
+  $line-height: $typography__line-height--1XL,
+  $color: $color__ui--link-blue,
+  $of-a: false
+) {
+  @if $of-a {
+    a {
+      @include link($font-size, $font-weight, $line-height, $color, false);
+    }
+  } @else {
+    @include text($font-size, $font-weight, $line-height, left, $color);
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@mixin unlink() {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+@mixin card(
+  $border: 1px $color__greys--20 solid,
+  $border-radius: $metrics__rounding--S,
+  $padding: $metrics__gap--1XL
+) {
+  border: $border;
+  border-radius: $border-radius;
+  padding: $padding;
+}
+
+@mixin setup-more(
+  $color: $color__ui--link-blue,
+  $size: $typography__font-size--S,
+  $margin: $metrics__gap--2XS
+) {
+  .more {
+    display: flex;
+
+    .more-text {
+      @include link($size, "semi-bold", $typography__line-height--1XL, $color);
+      @include gaps();
+      margin-right: $margin;
+    }
+
+    .more-arrow {
+      fill: $color;
+    }
+  }
+}
+
+@mixin max-width($width: $metrics__content-width--3XL) {
+  max-width: $width;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin drop-shadow(
+  $size: 0px $metrics__gap--S $metrics__gap--M #{-$metrics__gap--S},
+  $color: $color__brand--base-dark-blue,
+  $alpha: 0.2
+) {
+  box-shadow: $size rgba($color, $alpha);
+}
+
+@mixin llg-typography-base() {
+  font-family: 'Open Sans', sans-serif;
+}
+
+@mixin llg-typography-normal() {
+  @include llg-typography-base();
+  font-weight: $typography__font-weight--semi-bold;
+}
+
+@mixin llg-typography-light() {
+  @include llg-typography-base();
+  font-weight: $typography__font-weight--regular;
+}
+
+@mixin ellipsis() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin llg-typography-cta() {
+  @include llg-typography-normal();
+  font-size: $typography__font-size--S;
+  color: $color__brand--primary-green;
+}
+
+@mixin llg-typography-header() {
+  @include llg-typography-normal();
+  font-size: $typography__font-size--1XL;
+  color: $color__brand--base-dark-blue;
+}
+
+@mixin llg-typography-description() {
+  @include llg-typography-normal();
+  font-size: $typography__font-size--S;
+  color: $color__brand--base-dark-blue;
+}
+
+@mixin llg-typography-business-value() {
+  @include llg-typography-normal();
+  font-size: $typography__font-size--S;
+  color: $color__greys--60;
+}
+
+@mixin add-hover-effect($time: $transition__faster, $color: $color__ui--deeplink-cta) {
+  transition: color $time;
+
+  &:hover {
+    color: $color;
+  }
+}
+
+@mixin gradient-overlay($offset: 0, $height: 100%, $z-index: auto) {
+  display: block;
+  position: relative;
+  margin-top: -$offset;
+  z-index: $z-index;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: $height;
+    background-image: linear-gradient(-12deg, rgba(0, 23, 35, 0) 38%, rgba(0, 32, 48, 0.7) 100%);
+    background-position: left top;
+    background-size: 100%;
+  }
+}
+
+@mixin button($height: $metrics__button-height--M, $color: $color__ui--deeplink-cta) {
+  @include text($typography__font-size--L, "semi-bold", "xl", center, "light");
+  @include drop-shadow(0 $metrics__spread--L $metrics__spread--L #{-$metrics__spread--L}, $color, 0.5);
+  display: block;
+  margin: 0 auto;
+  height: $height;
+  background-color: $color;
+  border-radius: $metrics__rounding--M;
+  border: none;
+  padding: $metrics__gap--M $metrics__gap--1XL;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}

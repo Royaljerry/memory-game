@@ -1,0 +1,72 @@
+// CONSTANTS
+@import "constants";
+
+// Lists and maps
+
+@function contains($list, $var) {
+  $_out: false;
+  @each $item in $list { @if $item == $var { $_out: true; } }
+  @return $_out;
+}
+
+@function get_item_or_default($map, $key) {
+  $_out: '';
+  @if map-has_key($map, $key) { $_out: map-get($map, $key); }
+  @else { $_out: $key; }
+  @return $_out;
+}
+
+@function map_has_not_key($map, $key) {
+  $_out: false;
+  @if map_has_key($map, $key) {$_out: false;}
+  @else {$_out: true;}
+  @return $_out;
+}
+
+// STRIP UNIT
+// It strips the unit of measure and returns it
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+// CONVERT TO REM
+@function convert-to-rem($value, $base-value: $rem-base) {
+  $value: strip-unit($value) / strip-unit($base-value) * 1rem;
+  @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
+  @return $value;
+}
+
+@function data($attr) {
+  @if $namespace {
+    @return '[data-' + $namespace + '-' + $attr + ']';
+  }
+
+  @return '[data-' + $attr + ']';
+}
+
+@function rem-calc($values, $base-value: $rem-base) {
+  $max: length($values);
+
+  @if $max == 1 { @return convert-to-rem(nth($values, 1), $base-value); }
+
+  $remValues: ();
+  @for $i from 1 through $max {
+    $remValues: append($remValues, convert-to-rem(nth($values, $i), $base-value));
+  }
+  @return $remValues;
+}
+
+
+@function em-calc($values, $base-value: $rem-base) {
+  $remValues: rem-calc($values, $base-value: $rem-base);
+
+  $max: length($remValues);
+
+  @if $max == 1 { @return strip-unit(nth($remValues, 1)) * 1em; }
+
+  $emValues: ();
+  @for $i from 1 through $max {
+    $emValues: append($emValues, strip-unit(nth($remValues, $i)) * 1em);
+  }
+  @return $emValues;
+}
