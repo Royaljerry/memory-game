@@ -36,23 +36,10 @@ export class CardComponent implements OnInit {
   }
 
   ngOnInit() {
-    const sideLengthMin = this.sideLengths[0];
-    const sideLengthMax = this.sideLengths[1];
-    console.log(RjViewport.isPortrait, sideLengthMin, sideLengthMax);
-    switch (RjViewport.isPortrait) {
-      case true:
-        this.width = `100vw - ${sideLengthMin - 1} * 16px) / ${sideLengthMin})`;
-        this.height = `100vw - ${sideLengthMin - 1} * 16px) / ${sideLengthMin})`;
-        this.maxWidth = `100vh - ${sideLengthMax - 1} * 16px) / ${sideLengthMax})`;
-        this.maxHeight = `100vh - ${sideLengthMax - 1} * 16px) / ${sideLengthMax})`;
-        break;
-      case true:
-        this.width = `100vw - ${sideLengthMax - 1} * 16px) / ${sideLengthMax})`;
-        this.height = `100vw - ${sideLengthMax - 1} * 16px) / ${sideLengthMax})`;
-        this.maxWidth = `100vh - ${sideLengthMin - 1} * 16px) / ${sideLengthMin})`;
-        this.maxHeight = `100vh - ${sideLengthMin - 1} * 16px) / ${sideLengthMin})`;
-        break;
-    }
+    this.width = `calc((100vw - ${this.sideLengths[0] - 1} * 16px) / ${this.sideLengths[0]})`;
+    this.height = `calc((100vw - ${this.sideLengths[0] - 1} * 16px) / ${this.sideLengths[0]})`;
+    this.maxWidth = `calc((100vh - ${this.sideLengths[1] - 1} * 16px) / ${this.sideLengths[1]})`;
+    this.maxHeight = `calc((100vh - ${this.sideLengths[1] - 1} * 16px) / ${this.sideLengths[1]})`;
   }
 
 }
