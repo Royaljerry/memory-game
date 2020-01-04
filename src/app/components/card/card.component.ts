@@ -19,6 +19,7 @@ export class CardComponent implements OnInit {
 
   setupCardDimensions(sideLengths) {
     const largerSpread = Math.max(window.innerWidth, window.innerHeight);
+    console.log(sideLengths);
   }
 
   getImagePath(card: Card) {

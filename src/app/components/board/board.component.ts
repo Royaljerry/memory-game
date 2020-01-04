@@ -33,11 +33,11 @@ export class BoardComponent implements OnInit {
       centerItem = divisors.filter((e, i, a) => i === (a.length - 1) / 2);
       centerItems = [...centerItem, ...centerItem];
     }
+    centerItems = window.innerWidth >= window.innerHeight ? [centerItems[1], centerItems[0]] : centerItems;
     return centerItems;
   }
 
   setupCardsGrid(sideLengths: number[]) {
-    sideLengths = window.innerWidth >= window.innerHeight ? [sideLengths[1], sideLengths[0]] : sideLengths;
     return {
       'grid-template-columns': `repeat(${sideLengths[0]}, 1fr)`,
       'grid-template-rows': `repeat(${sideLengths[1]}, 1fr)`
