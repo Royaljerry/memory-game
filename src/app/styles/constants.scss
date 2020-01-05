@@ -14,28 +14,26 @@ $color__transparent: rgba(0,0,0,0);
 // Primary
 // ========================================
 
-$color__brand--primary-green: #74bd56; // 116, 189, 86
-$color__brand--brand-green: #c9ee00; // 201, 238, 0
-$color__brand--base-dark-blue: #00223e; // 0, 34, 62
+$color__primary--light: #5e92f3;
+$color__primary--mid: #1565c0;
+$color__primary--dark: #003c8f;
 
 // ========================================
 // Secondary
 // ========================================
 
-$color__ui--warning-error: #d0021b; // 208, 2, 27
-$color__ui--validation: #4faf3e; // 79, 175, 62
-$color__ui--link-blue: #0074ee; // 0, 116, 238
-$color__ui--deeplink-cta: #ff5600; // 255, 86, 0
-$color__ui--watch-out: #eb5769; // 235, 87, 105
+$color__secondary--light: #ff6434;
+$color__secondary--mid: #dd2c00;
+$color__secondary--dark: #a30000;
 
 // ========================================
 // Grays
 // ========================================
 
-$color__notification--http-error-light: #fae5e8; // 250, 229, 232
-$color__notification--http-error-dark: $color__ui--warning-error;
-$color__notification--no-internet-light: #f9e8bb; // 249, 232, 187
-$color__notification--no-internet-dark: $color__ui--deeplink-cta;
+$color__gray--light: #f5f5f5;
+$color__gray--mid: #e1e1e1;
+$color__gray--dark: #919191;
+
 
 // ********************************************************
 // TYPOGRAPHY
@@ -45,11 +43,13 @@ $color__notification--no-internet-dark: $color__ui--deeplink-cta;
 // Font Families
 // ========================================
 
-$typography__font-family--default: "Open Sans", Helvetica, Arial, sans-serif;
+$typography__font-family--default: "Roboto", Helvetica, Arial, sans-serif;
 
 // ========================================
 // Font Sizes
 // ========================================
+
+$typography__font-size--base: 16px;
 
 $typography__font-size--title: (
   "display": 2.5rem,
