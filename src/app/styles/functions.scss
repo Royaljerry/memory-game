@@ -1,4 +1,40 @@
-// Lists and maps
+// ****************************************************************
+// IMPORT
+// ****************************************************************
+
+@import "constants";
+
+
+// ****************************************************************
+// UNITS
+// ****************************************************************
+
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@function rem($values, $base-value: $rem-base) {
+  $max: length($values);
+
+  @if $max == 1 { @return to-rem(nth($values, 1), $base-value); }
+
+  $remValues: ();
+  @for $i from 1 through $max {
+    $remValues: append($remValues, to-rem(nth($values, $i), $base-value));
+  }
+  @return $remValues;
+}
+
+@function to-rem($value, $base-value: $rem-base) {
+  $value: strip-unit($value) / strip-unit($base-value) * 1rem;
+  @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
+  @return $value;
+}
+
+
+// ****************************************************************
+// LISTS AND MAPS
+// ****************************************************************
 
 @function contains($list, $var) {
   $_out: false;
@@ -20,17 +56,17 @@
   @return $_out;
 }
 
-// STRIP UNIT
-// It strips the unit of measure and returns it
-@function strip-unit($num) {
-  @return $num / ($num * 0 + 1);
-}
-
-// CONVERT TO REM
-@function convert-to-rem($value, $base-value: $metrics__unit) {
-  $value: strip-unit($value) / strip-unit($base-value) * 1rem;
-  @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
-  @return $value;
+@function list-to-string($list, $separator: ',') {
+  $result: '';
+  @for $index from 1 through length($list) {
+    $item: nth($list, $index);
+    $result: if(
+      $index != length($list),
+      #{$result}#{nth($list, $index)}#{$separator},
+      #{$result}#{nth($list, $index)}
+    );
+  }
+  @return $result;
 }
 
 @function data($attr) {
@@ -39,31 +75,4 @@
   }
 
   @return '[data-' + $attr + ']';
-}
-
-@function rem-calc($values, $base-value: $metrics__unit) {
-  $max: length($values);
-
-  @if $max == 1 { @return convert-to-rem(nth($values, 1), $base-value); }
-
-  $remValues: ();
-  @for $i from 1 through $max {
-    $remValues: append($remValues, convert-to-rem(nth($values, $i), $base-value));
-  }
-  @return $remValues;
-}
-
-
-@function em-calc($values, $base-value: $metrics__unit) {
-  $remValues: rem-calc($values, $base-value: $metrics__unit);
-
-  $max: length($remValues);
-
-  @if $max == 1 { @return strip-unit(nth($remValues, 1)) * 1em; }
-
-  $emValues: ();
-  @for $i from 1 through $max {
-    $emValues: append($emValues, strip-unit(nth($remValues, $i)) * 1em);
-  }
-  @return $emValues;
 }
