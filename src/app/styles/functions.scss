@@ -9,11 +9,7 @@
 // UNITS
 // ****************************************************************
 
-@function strip-unit($num) {
-  @return $num / ($num * 0 + 1);
-}
-
-@function rem($values, $base-value: $rem-base) {
+@function rem($values, $base-value: $metrics__unit) {
   $max: length($values);
 
   @if $max == 1 { @return to-rem(nth($values, 1), $base-value); }
@@ -26,8 +22,8 @@
 }
 
 @function to-rem($value, $base-value: $rem-base) {
-  $value: strip-unit($value) / strip-unit($base-value) * 1rem;
-  @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
+  $value: ($value / ($value * 0 + 1)) / ($base-value / ($base-value * 0 + 1)) * 1rem;
+  @if ($value == 0rem) { $value: 0; }
   @return $value;
 }
 
@@ -42,21 +38,21 @@
   @return $_out;
 }
 
-@function get_item_or_default($map, $key) {
+@function get($map, $key) {
   $_out: '';
   @if map-has_key($map, $key) { $_out: map-get($map, $key); }
   @else { $_out: $key; }
   @return $_out;
 }
 
-@function map_has_not_key($map, $key) {
+@function has-not($map, $key) {
   $_out: false;
   @if map_has_key($map, $key) {$_out: false;}
   @else {$_out: true;}
   @return $_out;
 }
 
-@function list-to-string($list, $separator: ',') {
+@function to-string($list, $separator: ',') {
   $result: '';
   @for $index from 1 through length($list) {
     $item: nth($list, $index);
@@ -67,12 +63,4 @@
     );
   }
   @return $result;
-}
-
-@function data($attr) {
-  @if $namespace {
-    @return '[data-' + $namespace + '-' + $attr + ']';
-  }
-
-  @return '[data-' + $attr + ']';
 }
