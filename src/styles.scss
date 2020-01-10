@@ -1,9 +1,19 @@
 @import 'app/styles/manifest';
 
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap&subset=latin-ext');
+$font-import__url: "https://fonts.googleapis.com/css?family=";
+$font-import__family: $typography__font-import--family;
+$font-import__weights: to-string($typography__font-import--weights);
+$font-import__subsets: to-string($typography__font-import--subsets);
+$font-import__separator-1: ":";
+$font-import__separator-2: "&display=swap&subset=";
+$font-import__full: #{$font-import__url}#{$font-import__family}#{$font-import__separator-1}#{$font-import__weights}#{$font-import__separator-2}#{$font-import__subsets};
+
+@import url($font-import__full);
 
 * {
   box-sizing: border-box;
+  font-family: $typography__font-family--default;
+  font-size: 64px;
 }
 
 html {

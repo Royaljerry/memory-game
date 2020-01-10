@@ -40,12 +40,14 @@ $metrics__breakpoint--base: $metrics__unit * 64;
 // ================================================
 
 $typography__font-import--weights: (300, 400, 500);
+$typography__font-import--family: "Roboto";
+$typography__font-import--subsets: ("latin-ext");
 
 // ================================================
 // Font Families
 // ================================================
 
-$typography__font-family--default: "Roboto", Helvetica, Arial, sans-serif;
+$typography__font-family--default: $typography__font-import--family, Helvetica, Arial, sans-serif;
 
 // ================================================
 // Font Sizes
@@ -60,7 +62,7 @@ $typography__font-size--base: $metrics__unit;
 // ****************************************************************
 
 // ================================================
-// Hue
+// Hues
 // ================================================
 
 // --------------------------------
