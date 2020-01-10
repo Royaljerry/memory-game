@@ -10,7 +10,7 @@
 // RESPONSIVE
 // ****************************************************************
 
-@mixin respondFrom($minWidth, $forcePortrait: false) {
+@mixin respond-from($minWidth, $forcePortrait: false) {
   @if $forcePortrait {
     @media (min-width: $minWidth) and (orientation: portrait) {
       @content;
@@ -22,16 +22,16 @@
   }
 }
 
-@mixin positionGridItem($rowStart, $columnStart, $rowEnd: $rowStart, $columnEnd: $columnStart) {
+@mixin position-grid-item($rowStart, $columnStart, $rowEnd: $rowStart, $columnEnd: $columnStart) {
   grid-row-start: $rowStart;
   grid-row-end: $rowEnd;
   grid-column-start: $columnStart;
   grid-column-end: $columnEnd;
 }
 
-@mixin repositionGridItem($rowStart, $columnStart, $rowEnd: $rowStart, $columnEnd: $columnStart, $breakpoint) {
-  @include respondFrom($breakpoint) {
-    @include positionGridItem($rowStart, $columnStart, $rowEnd: $rowStart, $columnEnd: $columnStart);
+@mixin reposition-grid-item($rowStart, $columnStart, $rowEnd: $rowStart, $columnEnd: $columnStart, $breakpoint) {
+  @include respond-from($breakpoint) {
+    @include position-grid-item($rowStart, $columnStart, $rowEnd: $rowStart, $columnEnd: $columnStart);
   }
 }
 
