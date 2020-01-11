@@ -9,19 +9,19 @@
 // UNITS
 // ****************************************************************
 
-@function rem($values, $base-value: $metrics__unit) {
+@function unit-rem($values, $base-value: $metrics__unit) {
   $max: length($values);
 
-  @if $max == 1 { @return to-rem(nth($values, 1), $base-value); }
+  @if $max == 1 { @return unit-to-rem(nth($values, 1), $base-value); }
 
   $remValues: ();
   @for $i from 1 through $max {
-    $remValues: append($remValues, to-rem(nth($values, $i), $base-value));
+    $remValues: append($remValues, unit-to-rem(nth($values, $i), $base-value));
   }
   @return $remValues;
 }
 
-@function to-rem($value, $base-value: $rem-base) {
+@function unit-to-rem($value, $base-value: $rem-base) {
   $value: ($value / ($value * 0 + 1)) / ($base-value / ($base-value * 0 + 1)) * 1rem;
   @if ($value == 0rem) { $value: 0; }
   @return $value;
@@ -32,27 +32,27 @@
 // LISTS AND MAPS
 // ****************************************************************
 
-@function contains($list, $var) {
+@function list-contains($list, $var) {
   $_out: false;
   @each $item in $list { @if $item == $var { $_out: true; } }
   @return $_out;
 }
 
-@function get($map, $key) {
+@function list-get($map, $key) {
   $_out: '';
   @if map-has_key($map, $key) { $_out: map-get($map, $key); }
   @else { $_out: $key; }
   @return $_out;
 }
 
-@function has-not($map, $key) {
+@function list-has-not($map, $key) {
   $_out: false;
   @if map_has_key($map, $key) {$_out: false;}
   @else {$_out: true;}
   @return $_out;
 }
 
-@function to-string($list, $separator: ',') {
+@function list-to-string($list, $separator: ',') {
   $result: '';
   @for $index from 1 through length($list) {
     $item: nth($list, $index);
@@ -73,24 +73,22 @@
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Based on https://css-tricks.com/snippets/sass/str-replace-function/
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-@function replace($string, $search, $replace: '') {
+@function string-replace($string, $search, $replace: '') {
   $index: str-index($string, $search);
-
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    @return str-slice($string, 1, $index - 1) + $replace + string-replace(str-slice($string, $index + str-length($search)), $search, $replace);
   }
-
   @return $string;
 }
 
 
 // ****************************************************************
-// CALCULATIONS
+// FONTS
 // ****************************************************************
 
-@function google-font($family, $weights: null, $subsets: null, $display: "swap") {
+@function font-google($family, $weights: null, $subsets: null, $display: "swap") {
   $display-types: ("auto", "block", "swap", "fallback", "optional");
-  $family: replace($family, ' ', '+');
+  $family: string-replace($family, ' ', '+');
   $url: "https://fonts.googleapis.com/css?";
   $sep-sc: ":";
   $sep-family: "family=";
@@ -101,8 +99,21 @@
     $display: "swap";
   }
   $address: #{$url}#{$sep-family}#{$family};
-  @if $weights != null { $address: #{$address}#{$sep-sc}#{to-string($weights)} }
-  @if $subsets != null { $address: #{$address}#{$sep-subset}#{to-string($subsets)} }
+  @if $weights != null { $address: #{$address}#{$sep-sc}#{list-to-string($weights)} }
+  @if $subsets != null { $address: #{$address}#{$sep-subset}#{list-to-string($subsets)} }
   $address: #{$address}#{$sep-display}#{$display};
   @return $address;
+}
+
+@function font-weight($value, $weights: $typography__font-import--weights) {
+  @if $weights == null {
+    @warn "Font weigths not defined, defaults to 'null'";
+    @return null;
+  }
+  $weight: $value;
+  @if index($weights, $value) == null {
+    @warn "Unknown font weight '#{$value}' – 400 applied instead.";
+    $weight: 400;
+  }
+  @return $weight;
 }
