@@ -64,3 +64,16 @@
   }
   @return $result;
 }
+
+
+// ****************************************************************
+// CALCULATIONS
+// ****************************************************************
+
+@function google-font($family, $weights, $subsets) {
+  $url: "https://fonts.googleapis.com/css?family=";
+  $sep-1: ":";
+  $sep-2: "&display=swap&subset=";
+  $address: #{$url}#{$family}#{$sep-1}#{to-string($weights)}#{$sep-2}#{to-string($subsets)};
+  @return $address;
+}

@@ -39,9 +39,10 @@ $metrics__breakpoint--base: $metrics__unit * 64;
 // Font Imports
 // ================================================
 
-$typography__font-import--weights: (300, 400, 500);
 $typography__font-import--family: "Roboto";
+$typography__font-import--weights: (300, 400, 500);
 $typography__font-import--subsets: ("latin-ext");
+$typography__font-import--path: google-font($typography__font-import--family, $typography__font-import--weights, $typography__font-import--subsets);
 
 // ================================================
 // Font Families
