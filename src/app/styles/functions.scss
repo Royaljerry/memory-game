@@ -67,17 +67,42 @@
 
 
 // ****************************************************************
+// STRINGS
+// ****************************************************************
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Based on https://css-tricks.com/snippets/sass/str-replace-function/
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+@function replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+
+// ****************************************************************
 // CALCULATIONS
 // ****************************************************************
 
-@function google-font($family, $weights, $subsets) {
+@function google-font($family, $weights: null, $subsets: null, $display: "swap") {
+  $display-types: ("auto", "block", "swap", "fallback", "optional");
+  $family: replace($family, ' ', '+');
   $url: "https://fonts.googleapis.com/css?";
   $sep-sc: ":";
   $sep-family: "family=";
-  $sep-display: "&display=swap";
   $sep-subset: "&subset=";
+  $sep-display: "&display=";
+  @if index($display-types, $display) == null {
+    @warn "Unknown display type '#{$display}' – 'swap' applied instead.";
+    $display: "swap";
+  }
   $address: #{$url}#{$sep-family}#{$family};
-  @if $weights != null { $address: #{$address}#{$sep-sc}#{to-string($weights)}#{$sep-display} }
+  @if $weights != null { $address: #{$address}#{$sep-sc}#{to-string($weights)} }
   @if $subsets != null { $address: #{$address}#{$sep-subset}#{to-string($subsets)} }
+  $address: #{$address}#{$sep-display}#{$display};
   @return $address;
 }
