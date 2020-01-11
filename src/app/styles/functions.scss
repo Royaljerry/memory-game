@@ -71,9 +71,13 @@
 // ****************************************************************
 
 @function google-font($family, $weights, $subsets) {
-  $url: "https://fonts.googleapis.com/css?family=";
-  $sep-1: ":";
-  $sep-2: "&display=swap&subset=";
-  $address: #{$url}#{$family}#{$sep-1}#{to-string($weights)}#{$sep-2}#{to-string($subsets)};
+  $url: "https://fonts.googleapis.com/css?";
+  $sep-sc: ":";
+  $sep-family: "family=";
+  $sep-display: "&display=swap";
+  $sep-subset: "&subset=";
+  $address: #{$url}#{$sep-family}#{$family};
+  @if $weights != null { $address: #{$address}#{$sep-sc}#{to-string($weights)}#{$sep-display} }
+  @if $subsets != null { $address: #{$address}#{$sep-subset}#{to-string($subsets)} }
   @return $address;
 }
