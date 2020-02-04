@@ -45,35 +45,27 @@
   margin: $margin;
 }
 
-@mixin center($width: $metrics__content-width--3XL) {
-  max-width: $width;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 
 // ****************************************************************
 // TYPOGRAPHY
 // ****************************************************************
 
+@mixin text($level, $align: "left", $color, $levels: $typography__font-levels) {
+  $aligns: ("left", "center", "right");
+  @if list-has-not($level, $levels) {
+    @warn "Unknown text level '#{$level}' – defaults to 'body-1'.";
+    $level: "body-1";
+  }
+  @if index($aligns, $align) == null {
+    @warn "Unknown alignment '#{$align}' – defaults to 'left'.";
+    $align: "left";
+  }
+
+}
 
 // ****************************************************************
 // LAYOUT
 // ****************************************************************
-
-@mixin ratio($ratio, $width, $gap, $radius: $metrics__rounding--M) {
-  @if $gap == 0 { $gap: 0px; }
-  $padding: -($ratio + ((1 - $ratio) / 2));
-  height: 0;
-  padding-top: calc(#{$ratio} * (#{$width} - #{$gap}));
-  overflow: hidden;
-  border-radius: $radius;
-
-  img {
-    transform: translateY(calc(#{$padding} * 100%));
-    border-radius: 0;
-  }
-}
 
 
 // ****************************************************************

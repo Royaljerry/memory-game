@@ -5,14 +5,15 @@ export class RjArray {
   }
 
   static permutateArray(originalArray: any[]) {
+    const workArray = [...originalArray];
     const permutatedArray = [];
-    while (originalArray.length > 0) {
-      const index = Math.floor((originalArray.length) * Math.random());
-      const item = originalArray[index];
+    while (workArray.length > 0) {
+      const index = Math.floor((workArray.length) * Math.random());
+      const item = workArray[index];
       permutatedArray.push(item);
-      originalArray.splice(index, 1);
+      workArray.splice(index, 1);
     }
-    return (permutatedArray);
+    return permutatedArray;
   }
 
 }

@@ -62,8 +62,38 @@ $typography__font-weight--medium: font-weight(500);
 // Font Sizes
 // ================================================
 
-$typography__font-size--base: $metrics__unit;
+$typography__font-size--large-6: unit-rem(96px);
+$typography__font-size--large-5: unit-rem(60px);
+$typography__font-size--large-4: unit-rem(48px);
+$typography__font-size--large-3: unit-rem(34px);
+$typography__font-size--large-2: unit-rem(24px);
+$typography__font-size--large-1: unit-rem(20px);
+$typography__font-size--regular: unit-rem(16px);
+$typography__font-size--small-1: unit-rem(14px);
+$typography__font-size--small-2: unit-rem(12px);
+$typography__font-size--small-3: unit-rem(10px);
 
+// ================================================
+// Font Levels
+// ================================================
+
+$typography__font-levels: (
+  "headline-1": ($typography__font-weight--light, $typography__font-size--large-6),
+  "headline-2": ($typography__font-weight--light, $typography__font-size--large-5),
+  "headline-3": ($typography__font-weight--regular, $typography__font-size--large-4),
+  "headline-4": ($typography__font-weight--regular, $typography__font-size--large-3),
+  "headline-5": ($typography__font-weight--regular, $typography__font-size--large-2),
+  "headline-6": ($typography__font-weight--medium, $typography__font-size--large-1),
+  "subtitle-1": ($typography__font-weight--regular, $typography__font-size--regular),
+  "subtitle-2": ($typography__font-weight--medium, $typography__font-size--small-1),
+  "body-1": ($typography__font-weight--regular, $typography__font-size--regular),
+  "body-2": ($typography__font-weight--regular, $typography__font-size--small-1),
+  "button": ($typography__font-weight--medium, $typography__font-size--small-1, true),
+  "caption": ($typography__font-weight--regular, $typography__font-size--small-2),
+  "overline": ($typography__font-weight--regular, $typography__font-size--small-3, true)
+);
+
+@debug map-get($typography__font-levels, "button");
 
 // ****************************************************************
 // COLOR
@@ -77,8 +107,8 @@ $typography__font-size--base: $metrics__unit;
 // --------------------------------
 // Generics
 // --------------------------------
-$color__generics--black: #000000;
-$color__generics--white: #ffffff;
+$color__generic--black: #000000;
+$color__generic--white: #ffffff;
 
 // --------------------------------
 // Primary
