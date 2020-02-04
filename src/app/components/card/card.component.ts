@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Card } from '@classes/card';
-import { RjViewport } from '@utilities/rj-viewport';
+import { DataService } from '@services/data.service';
 
 @Component({
   selector: 'app-card',
@@ -16,11 +16,9 @@ export class CardComponent implements OnInit {
   maxWidth: string;
   maxHeight: string;
 
-  @Output() turnedChanged: EventEmitter<boolean> = new EventEmitter();
-
-  constructor() {
-
-  }
+  constructor(
+    private dataService: DataService
+  ) {}
 
   getImagePath(card: Card) {
     return card.turned ? '/images/group-' + Number(this.card.groupId + 1) + '.jpg' : '/images/backface.png';
@@ -30,7 +28,7 @@ export class CardComponent implements OnInit {
     if (!card.found) {
       if (!card.turned) {
         card.turned = true;
-        this.turnedChanged.emit(card.turned);
+        this.dataService.turnedChanged$.next(card);
       }
     }
   }
