@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Card } from '@classes/card';
-import { DataService } from '@services/data.service';
+import { CardService } from '@services/card.service';
 
 @Component({
   selector: 'app-card',
@@ -17,7 +17,7 @@ export class CardComponent implements OnInit {
   maxHeight: string;
 
   constructor(
-    private dataService: DataService
+    private cardService: CardService
   ) {}
 
   getImagePath(card: Card) {
@@ -28,7 +28,7 @@ export class CardComponent implements OnInit {
     if (!card.found) {
       if (!card.turned) {
         card.turned = true;
-        this.dataService.turnedChanged$.next(card);
+        this.cardService.turnedChanged$.next(card);
       }
     }
   }

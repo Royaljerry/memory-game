@@ -3,7 +3,7 @@ import { RjArray } from '@utilities/rj-array';
 import { RjNumber } from '@utilities/rj-number';
 import { RjViewport } from '@utilities/rj-viewport';
 import { Card } from '@classes/card';
-import { DataService } from '@services/data.service';
+import { CardService } from '@services/card.service';
 
 @Component({
   selector: 'app-board',
@@ -25,7 +25,7 @@ export class BoardComponent implements OnInit {
   turnedCards: Card[] = [];
 
   constructor(
-    private dataService: DataService
+    private cardService: CardService
   ) { }
 
   getSideLengths(divisors: number[]) {
@@ -108,7 +108,7 @@ export class BoardComponent implements OnInit {
 
     this.allCards = RjArray.permutateArray(this.generateCards(this.orderOfCards, this.orderOfGroups));
 
-    this.dataService.turnedChanged$.subscribe(card => {
+    this.cardService.turnedChanged$.subscribe(card => {
       this.handleCardTurn(card.turned, card);
     });
   }

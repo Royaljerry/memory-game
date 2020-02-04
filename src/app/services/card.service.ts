@@ -5,6 +5,6 @@ import { Card } from '@classes/card';
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class CardService {
   turnedChanged$ = new Subject<Card>();
 }

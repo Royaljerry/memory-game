@@ -1,6 +1,6 @@
 import { RjArray } from './rj-array';
 
-describe('Array', () => {
+describe('RjArray', () => {
   it('should create an instance', () => {
     expect(new RjArray()).toBeTruthy();
   });
@@ -14,11 +14,9 @@ describe('Array', () => {
 
     const testArrayPermutated = RjArray.permutateArray(testArray);
     const testArrayPermutatedSorted = [...testArrayPermutated].sort((a, b) => a - b);
-    const sameItems = (array1, array2) => array1.reduce(() => {})
-    console.log(testArrayPermutated, testArrayPermutatedSorted);
 
-
-    expect(testArrayPermutated.length).toEqual(testArray.length);
-
+    const arraysHaveSameLength = testArrayPermutated.length === testArray.length;
+    const arraysHaveSameItems = testArray.every((item, index) => item === testArrayPermutatedSorted[index]);
+    expect(arraysHaveSameLength && arraysHaveSameItems).toBeTruthy();
   });
 });
